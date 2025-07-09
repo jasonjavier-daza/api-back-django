@@ -21,7 +21,7 @@ class Categoria(models.Model):
     nombre = models.CharField(max_length=150)
     icono = models.CharField(max_length=255)
     subcategorias = models.TextField()
-    banner = models.CharField(max_length=255, blank=True, null=True)
+    banner = models.CharField(max_length=5255, blank=True, null=True)
     state_banner = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -33,7 +33,7 @@ class Categoria(models.Model):
 class Marca(models.Model):
     nombre = models.CharField(max_length=150)
     descripcion = models.TextField()
-    banner = models.CharField(max_length=255, blank=True, null=True)
+    banner = models.CharField(max_length=5255, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -44,7 +44,7 @@ class Marca(models.Model):
 class Producto(models.Model):
     titulo = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, unique=True, blank=True, null=True)
-    poster = models.CharField(max_length=255)
+    poster = models.CharField(max_length=5255, blank=True, null=True)
     precio_ahora = models.DecimalField(max_digits=10, decimal_places=2)
     precio_antes = models.DecimalField(max_digits=10, decimal_places=2)
     video_review = models.URLField()
