@@ -76,3 +76,38 @@ class Carrito(models.Model):
 
     def __str__(self):
         return f"{self.producto.titulo} x {self.cantidad}"
+class Venta(models.Model):
+    # Información de pago
+    total_pagado = models.DecimalField(max_digits=10, decimal_places=2)
+    codigo_cupon = models.CharField(max_length=50, blank=True, null=True)
+    info_cupon = models.TextField(blank=True, null=True)
+    idtransaccion = models.CharField(max_length=100, blank=True, null=True)
+    metodo_pago = models.CharField(max_length=50, blank=True, null=True)
+
+    # Información de envío
+    tracking_number = models.CharField(max_length=100, blank=True, null=True)
+    tipo_envio = models.CharField(max_length=50)
+    precio_envio = models.DecimalField(max_digits=10, decimal_places=2)
+    tiempo_estimado = models.CharField(max_length=100)
+
+    # Dirección de envío
+    direccion = models.CharField(max_length=255)
+    destinatario = models.CharField(max_length=100)
+    referencia = models.TextField()
+    pais = models.CharField(max_length=100)
+    ciudad = models.CharField(max_length=100)
+    zip = models.CharField(max_length=20)
+
+    # Fecha desglosada (opcional)
+    month = models.CharField(max_length=10, blank=True, null=True)
+    day = models.CharField(max_length=10, blank=True, null=True)
+    year = models.CharField(max_length=10, blank=True, null=True)
+
+    # Estado del pedido
+    estado = models.CharField(max_length=50, default='pendiente')
+
+    # Fecha de creación
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Venta #{self.id} - {self.destinatario}"
